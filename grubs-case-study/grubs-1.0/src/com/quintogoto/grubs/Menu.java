@@ -38,7 +38,7 @@ public class Menu {
 
         layeredPane.add(backgroundLabel, Integer.valueOf(1));
 
-        adoboIcon = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/cards/adobo.png");
+        adoboIcon = new ImageIcon("Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/cards/adobo.png");
         siniIcon = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/cards/sini.png");
         bicolIcon = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/cards/bicolex.png");
         kaldeIcon = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/cards/kalde.png");
