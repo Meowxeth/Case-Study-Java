@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Menu{
+public class Menu {
     // Variables
 
     private JButton adoboButton;
@@ -27,23 +27,23 @@ public class Menu{
     OrderRecorder ord = new OrderRecorder();
     private JScrollPane scrollPane;
 
-    public Menu(JScrollPane scrollPane){
+    public Menu(JScrollPane scrollPane) {
         this.scrollPane = scrollPane;
     }
 
     public void setUpUI(JLayeredPane layeredPane) {
-        ImageIcon backgroundImage = new ImageIcon("resources/assets/bg.png");
+        ImageIcon backgroundImage = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/bg.png");
         JLabel backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
 
         layeredPane.add(backgroundLabel, Integer.valueOf(1));
 
-        adoboIcon = new ImageIcon("resources/assets/cards/adobo.png");
-        siniIcon = new ImageIcon("resources/assets/cards/sini.png");
-        bicolIcon = new ImageIcon("resources/assets/cards/bicolex.png");
-        kaldeIcon = new ImageIcon("resources/assets/cards/kalde.png");
-        gulamIcon = new ImageIcon("resources/assets/cards/gulam.png");
-        cokeIcon = new ImageIcon("resources/assets/cards/coke.png");
+        adoboIcon = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/cards/adobo.png");
+        siniIcon = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/cards/sini.png");
+        bicolIcon = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/cards/bicolex.png");
+        kaldeIcon = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/cards/kalde.png");
+        gulamIcon = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/cards/gulam.png");
+        cokeIcon = new ImageIcon("grubs-case-study/grubs-1.0/resources/assets/cards/coke.png");
 
         // Adobo Button
         Image image = adoboIcon.getImage();
@@ -101,7 +101,7 @@ public class Menu{
         KaldeFunc kaldeFunc = new KaldeFunc(ord);
         kaldeFunc.kaldeFunc(layeredPane, kaldeButton);
 
-        //Gulaman Button
+        // Gulaman Button
         Image imageGulam = gulamIcon.getImage();
         Image scaledImageGulam = imageGulam.getScaledInstance(217, 216, Image.SCALE_SMOOTH);
         ImageIcon scaledIconGulam = new ImageIcon(scaledImageGulam);
@@ -115,7 +115,7 @@ public class Menu{
         GulamFunc gulamFunc = new GulamFunc(ord);
         gulamFunc.gulamFunc(layeredPane, gulamButton, scrollPane);
 
-        //Coke Button
+        // Coke Button
         Image imageCoke = cokeIcon.getImage();
         Image scaledImageCoke = imageCoke.getScaledInstance(217, 216, Image.SCALE_SMOOTH);
         ImageIcon scaledIconCoke = new ImageIcon(scaledImageCoke);
@@ -129,31 +129,32 @@ public class Menu{
         CokeFunc cokeFunc = new CokeFunc(ord);
         cokeFunc.cokeFunc(layeredPane, cokeButton, scrollPane);
 
+        // Text on the menu
+        JLabel grubsLabel = new JLabel("Grubs Menu"); // Timer Display set to 25:00 initially
+        grubsLabel.setBounds(27, 44, 500, 66); // Timer Display Positioning
 
-        //Text on the menu
-        JLabel grubsLabel = new JLabel("Grubs Menu"); //Timer Display set to 25:00 initially
-        grubsLabel.setBounds(27, 44, 500, 66); //Timer Display Positioning
-
-        //Sets the font of the grubs menu (Font type, font size)
-        try{
-            Font menuFont = Font.createFont(Font.TRUETYPE_FONT, new File("resources/assets/fonts/Montserrat-Bold.ttf"));
+        // Sets the font of the grubs menu (Font type, font size)
+        try {
+            Font menuFont = Font.createFont(Font.TRUETYPE_FONT,
+                    new File("grubs-case-study/grubs-1.0/resources/assets/fonts/Montserrat-Bold.ttf"));
             menuFont = menuFont.deriveFont(Font.PLAIN, 54);
             grubsLabel.setFont(menuFont);
-        } catch(FontFormatException | IOException e){
+        } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
 
-        //Drinks Label
+        // Drinks Label
 
         JLabel drinksLabel = new JLabel("Drinks");
         drinksLabel.setBounds(32, 803, 500, 47);
 
-        //Sets the font of the grubs menu (Font type, font size)
-        try{
-            Font drinksFont = Font.createFont(Font.TRUETYPE_FONT, new File("resources/assets/fonts/Montserrat-Bold.ttf"));
+        // Sets the font of the grubs menu (Font type, font size)
+        try {
+            Font drinksFont = Font.createFont(Font.TRUETYPE_FONT,
+                    new File("grubs-case-study/grubs-1.0/resources/assets/fonts/Montserrat-Bold.ttf"));
             drinksFont = drinksFont.deriveFont(Font.BOLD, 40);
             drinksLabel.setFont(drinksFont);
-        } catch(FontFormatException | IOException e){
+        } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
 
@@ -167,18 +168,18 @@ public class Menu{
         layeredPane.add(drinksLabel, Integer.valueOf(2));
     }
 }
+
 class OrderRecorder {
 
     ArrayList<Integer> quant = new ArrayList<>();
     ArrayList<Integer> orders = new ArrayList<>();
 
-
-    public void addQuant(int value){
+    public void addQuant(int value) {
         quant.add(value);
         System.out.println(quant);
     }
 
-    public void addOrder(int value){
+    public void addOrder(int value) {
         orders.add(value);
         System.out.println(orders);
     }

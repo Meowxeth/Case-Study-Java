@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 public class Main extends JFrame {
     protected JLayeredPane layeredPane;
 
-
     public Main() {
 
         JFrame frame = new JFrame("Grubs");
@@ -37,7 +36,7 @@ public class Main extends JFrame {
         layeredPane = new JLayeredPane(); // Creating a JLayeredPane to manage layers of components
         layeredPane.setPreferredSize(new java.awt.Dimension(600, 1200)); // Example size
         layeredPane.setLayout(null);
-         // Setting the content pane of the JFrame to the JLayeredPane
+        // Setting the content pane of the JFrame to the JLayeredPane
 
         // Wrap the JLayeredPane in a JScrollPane
         JScrollPane scrollPane = new JScrollPane(layeredPane);
@@ -47,7 +46,7 @@ public class Main extends JFrame {
         frame.setContentPane(scrollPane);
 
         Menu menuObj = new Menu(scrollPane);
-        menuObj.setUpUI(layeredPane); //Displaying the Menu UI
+        menuObj.setUpUI(layeredPane); // Displaying the Menu UI
 
         frame.setVisible(true);
 
