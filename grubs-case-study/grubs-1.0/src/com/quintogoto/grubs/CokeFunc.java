@@ -1,33 +1,29 @@
 package com.quintogoto.grubs;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 
-public class AdoboFunc {
+
+public class CokeFunc {
     JLabel quantLabel;
     int counter = 1;
-    int orderId = 1;
+    int orderId = 6;
 
     Init init = new Init();
     private OrderRecorder orderRecorder;
 
-    public AdoboFunc(OrderRecorder orderRecorder) {
+    public CokeFunc(OrderRecorder orderRecorder) {
         this.orderRecorder = orderRecorder;
     }
 
-    public void adoboFunc(JLayeredPane layeredPane, JButton adoboButton) {
-        adoboButton.addActionListener(new ActionListener() {
+    public void cokeFunc(JLayeredPane layeredPane, JButton cokeButton, JScrollPane scrollPane) {
+        cokeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ImageIcon adoboChosen = new ImageIcon("resources/assets/cards/chosen-adobo.png");
-                JLabel backgroundLabel = new JLabel(adoboChosen);
-                backgroundLabel.setBounds(0, 0, adoboChosen.getIconWidth(), adoboChosen.getIconHeight());
+                ImageIcon cokeChosen = new ImageIcon("resources/assets/cards/chosen-coke.png");
+                JLabel backgroundLabel = new JLabel(cokeChosen);
+                backgroundLabel.setBounds(0, 0, cokeChosen.getIconWidth(), cokeChosen.getIconHeight());
 
                 //Adds the background of Adobo selected card to the layered pane
                 layeredPane.add(backgroundLabel, Integer.valueOf(3));
@@ -54,7 +50,7 @@ public class AdoboFunc {
                 //Functionality of all the buttons
                 addQuant(layeredPane, addButton);
                 minusQuant(layeredPane, minusButton);
-                confirm(layeredPane, confirmButton, addButton, minusButton, backgroundLabel);
+                confirm(layeredPane, confirmButton, addButton, minusButton, backgroundLabel, scrollPane);
 
                 //Sets the font of the quantity label
                 init.fontSetterMont(30, quantLabel);
@@ -64,16 +60,22 @@ public class AdoboFunc {
                 layeredPane.add(addButton, Integer.valueOf(4));
                 layeredPane.add(minusButton, Integer.valueOf(4));
 
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        scrollPane.getVerticalScrollBar().setValue(0);
+                    }
+                });
+
                 layeredPane.revalidate();
                 layeredPane.repaint();
             }
         });
 
         //Hand cursor on hover
-        init.mouseListener(adoboButton);
+        init.mouseListener(cokeButton);
     }
 
-    public void confirm(JLayeredPane layeredPane, JButton confirmButton, JButton addButton, JButton minusButton, JLabel backgroundLabel){
+    public void confirm(JLayeredPane layeredPane, JButton confirmButton, JButton addButton, JButton minusButton, JLabel backgroundLabel, JScrollPane scrollPane){
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,6 +89,12 @@ public class AdoboFunc {
                 layeredPane.remove(minusButton);
 
                 counter = 1;
+
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        scrollPane.getVerticalScrollBar().setValue(0);
+                    }
+                });
 
 
                 layeredPane.revalidate();
@@ -103,15 +111,13 @@ public class AdoboFunc {
             public void actionPerformed(ActionEvent e) {
                 counter++;
 
-               quantLabel.setText(Integer.toString(counter));
-               layeredPane.revalidate();
-               layeredPane.repaint();
+                quantLabel.setText(Integer.toString(counter));
+                layeredPane.revalidate();
+                layeredPane.repaint();
             }
         });
 
         init.mouseListener(addButton);
-
-
     }
 
     public void minusQuant(JLayeredPane layeredPane, JButton minusButton){

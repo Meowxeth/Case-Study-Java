@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class Menu {
+public class Menu{
     // Variables
 
     private JButton adoboButton;
@@ -22,6 +23,13 @@ public class Menu {
 
     private ImageIcon gulamIcon;
     private ImageIcon cokeIcon;
+
+    OrderRecorder ord = new OrderRecorder();
+    private JScrollPane scrollPane;
+
+    public Menu(JScrollPane scrollPane){
+        this.scrollPane = scrollPane;
+    }
 
     public void setUpUI(JLayeredPane layeredPane) {
         ImageIcon backgroundImage = new ImageIcon("resources/assets/bg.png");
@@ -48,7 +56,7 @@ public class Menu {
         adoboButton.setBorderPainted(false);
         adoboButton.setBounds(60, 130, 217, 305);
 
-        AdoboFunc adoboFunc = new AdoboFunc();
+        AdoboFunc adoboFunc = new AdoboFunc(ord);
         adoboFunc.adoboFunc(layeredPane, adoboButton);
 
         // Sinigang Button
@@ -62,7 +70,7 @@ public class Menu {
         siniButton.setBorderPainted(false);
         siniButton.setBounds(318, 130, 217, 305);
 
-        SiniFunc siniFunc = new SiniFunc();
+        SiniFunc siniFunc = new SiniFunc(ord);
         siniFunc.siniFunc(layeredPane, siniButton);
 
         // Bicol Express Button
@@ -76,7 +84,7 @@ public class Menu {
         bicolButton.setBorderPainted(false);
         bicolButton.setBounds(62, 469, 217, 305);
 
-        BicolFunc bicolFunc = new BicolFunc();
+        BicolFunc bicolFunc = new BicolFunc(ord);
         bicolFunc.bicolFunc(layeredPane, bicolButton);
 
         // Kaldereta Button
@@ -90,7 +98,7 @@ public class Menu {
         kaldeButton.setBorderPainted(false);
         kaldeButton.setBounds(320, 469, 217, 305);
 
-        KaldeFunc kaldeFunc = new KaldeFunc();
+        KaldeFunc kaldeFunc = new KaldeFunc(ord);
         kaldeFunc.kaldeFunc(layeredPane, kaldeButton);
 
         //Gulaman Button
@@ -104,6 +112,9 @@ public class Menu {
         gulamButton.setBorderPainted(false);
         gulamButton.setBounds(62, 861, 217, 216);
 
+        GulamFunc gulamFunc = new GulamFunc(ord);
+        gulamFunc.gulamFunc(layeredPane, gulamButton, scrollPane);
+
         //Coke Button
         Image imageCoke = cokeIcon.getImage();
         Image scaledImageCoke = imageCoke.getScaledInstance(217, 216, Image.SCALE_SMOOTH);
@@ -114,6 +125,9 @@ public class Menu {
         cokeButton.setContentAreaFilled(false);
         cokeButton.setBorderPainted(false);
         cokeButton.setBounds(320, 861, 217, 216);
+
+        CokeFunc cokeFunc = new CokeFunc(ord);
+        cokeFunc.cokeFunc(layeredPane, cokeButton, scrollPane);
 
 
         //Text on the menu
@@ -151,6 +165,21 @@ public class Menu {
         layeredPane.add(cokeButton, Integer.valueOf(2));
         layeredPane.add(grubsLabel, Integer.valueOf(2));
         layeredPane.add(drinksLabel, Integer.valueOf(2));
+    }
+}
+class OrderRecorder {
 
+    ArrayList<Integer> quant = new ArrayList<>();
+    ArrayList<Integer> orders = new ArrayList<>();
+
+
+    public void addQuant(int value){
+        quant.add(value);
+        System.out.println(quant);
+    }
+
+    public void addOrder(int value){
+        orders.add(value);
+        System.out.println(orders);
     }
 }

@@ -1,60 +1,56 @@
 package com.quintogoto.grubs;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 
-public class AdoboFunc {
+
+public class GulamFunc {
     JLabel quantLabel;
     int counter = 1;
-    int orderId = 1;
+    int orderId = 5;
 
     Init init = new Init();
     private OrderRecorder orderRecorder;
 
-    public AdoboFunc(OrderRecorder orderRecorder) {
+    public GulamFunc(OrderRecorder orderRecorder) {
         this.orderRecorder = orderRecorder;
     }
 
-    public void adoboFunc(JLayeredPane layeredPane, JButton adoboButton) {
-        adoboButton.addActionListener(new ActionListener() {
+    public void gulamFunc(JLayeredPane layeredPane, JButton gulamButton, JScrollPane scrollPane) {
+        gulamButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ImageIcon adoboChosen = new ImageIcon("resources/assets/cards/chosen-adobo.png");
-                JLabel backgroundLabel = new JLabel(adoboChosen);
-                backgroundLabel.setBounds(0, 0, adoboChosen.getIconWidth(), adoboChosen.getIconHeight());
+                ImageIcon gulamChosen = new ImageIcon("resources/assets/cards/chosen-gulaman.jpg");
+                JLabel backgroundLabel = new JLabel(gulamChosen);
+                backgroundLabel.setBounds(0, 0, gulamChosen.getIconWidth(), gulamChosen.getIconHeight());
 
                 //Adds the background of Adobo selected card to the layered pane
                 layeredPane.add(backgroundLabel, Integer.valueOf(3));
 
                 //Sets the label of the quantity counter, starting String and positioning
                 quantLabel = new JLabel(Integer.toString(counter));
-                quantLabel.setBounds(295, 935, 50, 35);
+                quantLabel.setBounds(293, 555, 50, 35);
 
                 //Confirm Button Initialization
                 ImageIcon confirmIcon = new ImageIcon("resources/assets/btns/ConfirmBtn.png");
                 JButton confirmButton = new JButton(init.imageIconSetup(confirmIcon, 218, 59));
-                init.buttonSetup(confirmButton, 191, 1070, 218, 59);
+                init.buttonSetup(confirmButton, 191, 649, 218, 59);
 
                 //Plus Button Initialization
                 ImageIcon addIcon = new ImageIcon("resources/assets/btns/GreenAddBtn.png");
                 JButton addButton = new JButton(init.imageIconSetup(addIcon, 48, 48));
-                init.buttonSetup(addButton, 385, 930, 48, 48);
+                init.buttonSetup(addButton, 385, 549, 48, 48);
 
                 //Minus Button Initialization
                 ImageIcon minusIcon = new ImageIcon("resources/assets/btns/Minus.png");
                 JButton minusButton = new JButton(init.imageIconSetup(minusIcon, 48, 48));
-                init.buttonSetup(minusButton, 166, 930, 48, 48);
+                init.buttonSetup(minusButton, 166, 549, 48, 48);
 
                 //Functionality of all the buttons
                 addQuant(layeredPane, addButton);
                 minusQuant(layeredPane, minusButton);
-                confirm(layeredPane, confirmButton, addButton, minusButton, backgroundLabel);
+                confirm(layeredPane, confirmButton, addButton, minusButton, backgroundLabel, scrollPane);
 
                 //Sets the font of the quantity label
                 init.fontSetterMont(30, quantLabel);
@@ -64,16 +60,22 @@ public class AdoboFunc {
                 layeredPane.add(addButton, Integer.valueOf(4));
                 layeredPane.add(minusButton, Integer.valueOf(4));
 
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        scrollPane.getVerticalScrollBar().setValue(0);
+                    }
+                });
+
                 layeredPane.revalidate();
                 layeredPane.repaint();
             }
         });
 
         //Hand cursor on hover
-        init.mouseListener(adoboButton);
+        init.mouseListener(gulamButton);
     }
 
-    public void confirm(JLayeredPane layeredPane, JButton confirmButton, JButton addButton, JButton minusButton, JLabel backgroundLabel){
+    public void confirm(JLayeredPane layeredPane, JButton confirmButton, JButton addButton, JButton minusButton, JLabel backgroundLabel, JScrollPane scrollPane){
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,6 +89,12 @@ public class AdoboFunc {
                 layeredPane.remove(minusButton);
 
                 counter = 1;
+
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        scrollPane.getVerticalScrollBar().setValue(0);
+                    }
+                });
 
 
                 layeredPane.revalidate();
@@ -103,15 +111,13 @@ public class AdoboFunc {
             public void actionPerformed(ActionEvent e) {
                 counter++;
 
-               quantLabel.setText(Integer.toString(counter));
-               layeredPane.revalidate();
-               layeredPane.repaint();
+                quantLabel.setText(Integer.toString(counter));
+                layeredPane.revalidate();
+                layeredPane.repaint();
             }
         });
 
         init.mouseListener(addButton);
-
-
     }
 
     public void minusQuant(JLayeredPane layeredPane, JButton minusButton){
