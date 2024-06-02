@@ -1,69 +1,45 @@
 package com.quintogoto.grubs;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import javax.swing.*; //Importing all the swing tools and classes
 
 public class Main extends JFrame {
-    protected JLayeredPane layeredPane;
+    protected JLayeredPane layeredPane; //Created a variable to be set as content pane, this is the variable that we would add contents to
 
     public Main() {
+        JFrame frame = new JFrame("GRUBS"); //Sets the title of the window
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //If the user clicked close then the application will close
 
-        JFrame frame = new JFrame("Grubs");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // When the User Clicked Close, The Window will Close
-        // Create a KeyStroke for the ESC key
-        KeyStroke escapeKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
-
-        // Map the KeyStroke to an action key
-        String actionKey = "ESCAPE";
-
-        // Get the InputMap and ActionMap for the root pane
-        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        ActionMap actionMap = getRootPane().getActionMap();
-
-        // Add the key binding90
-        inputMap.put(escapeKeyStroke, actionKey);
-        actionMap.put(actionKey, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
-        frame.setSize(600, 800);
-        frame.setResizable(false); // Making the JFrame not resizable
+        frame.setSize(600, 800); //Sets the initial size of the window to 600 by 800
+        frame.setResizable(false); // Making the JFrame not resizable to avoid GUI conflicts
 
         layeredPane = new JLayeredPane(); // Creating a JLayeredPane to manage layers of components
-        layeredPane.setPreferredSize(new java.awt.Dimension(600, 1200)); // Example size
-        layeredPane.setLayout(null);
-        // Setting the content pane of the JFrame to the JLayeredPane
+        layeredPane.setPreferredSize(new java.awt.Dimension(600, 1200)); // Setting the scrollable size of the window, starts with 600 by 800 but when scrolled in extends to 600 by 1200
+        layeredPane.setLayout(null); //Layout set to null, the layout would just be the layers
 
-        // Wrap the JLayeredPane in a JScrollPane
+        // Wrap the JLayeredPane in a JScrollPane, Making the window scrollable
         JScrollPane scrollPane = new JScrollPane(layeredPane);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //Making the Horizontal Bar Disappear
 
-        frame.setContentPane(scrollPane);
+        frame.setContentPane(scrollPane); // Sets the content pane to the scrollPane above
 
         Menu menuObj = new Menu(scrollPane);
-        menuObj.setUpUI(layeredPane); // Displaying the Menu UI
-
+        menuObj.setUpUI(layeredPane); //Displaying the Menu UI
         frame.setVisible(true);
 
-        requestFocusInWindow();
+        requestFocusInWindow();//Requests that this Component get the input focus
     }
 
     public static void main(String[] args) {
-        // Using SwingUtilities.invokeLater to run the GUI code on the Event Dispatch
-        // Thread
-
+        // Using SwingUtilities.invokeLater to run the GUI code on the Event Dispatch Thread
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 // Creating an instance of the Main class to start the application
                 new Main();
-
             }
         });
     }
 }
+
+
