@@ -194,7 +194,7 @@ class CancelFunc{
 
                 // Create a label to display the "Order Cancelled" image
                 JLabel backgroundLabel = new JLabel(new ImageIcon("Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/cards/orderCancelled.png"));
-                backgroundLabel.setBounds(0, 0, 600, 800);
+                backgroundLabel.setBounds(0, 0, 600, 1200);
                 layeredPane.add(backgroundLabel, Integer.valueOf(3));
 
                 // Create a timer to hide the label after 3 seconds
@@ -389,7 +389,7 @@ class CheckoutFunc{
 
                         // Create a label to display the image of order successful
                         JLabel successBackgroundLabel = new JLabel(new ImageIcon("Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/cards/orderSuccess.png"));
-                        successBackgroundLabel.setBounds(0, 0, 600, 800); // Adjust the size and position as needed
+                        successBackgroundLabel.setBounds(0, 0, 600, 1200); // Adjust the size and position as needed
                         layeredPane.add(successBackgroundLabel, Integer.valueOf(5));
 
                         // Create a timer to hide the label after 3 seconds

@@ -38,7 +38,7 @@ public class Main extends JFrame {
             }
         });
 
-        // Start the timer (it will fire once after 3 seconds)
+        // Start the timer (it will fire once after 4 seconds)
         timer.setRepeats(false);
         timer.start();
 
