@@ -1,6 +1,8 @@
 package com.quintogoto.grubs;
 
 import javax.swing.*; //Importing all the swing tools and classes
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main extends JFrame {
     protected JLayeredPane layeredPane; //Created a variable to be set as content pane, this is the variable that we would add contents to
@@ -22,6 +24,23 @@ public class Main extends JFrame {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //Making the Horizontal Bar Disappear
 
         frame.setContentPane(scrollPane); // Sets the content pane to the scrollPane above
+
+        // Create a label to display the image of startup logo
+        JLabel startupBackgroundLabel = new JLabel(new ImageIcon("Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/grubs-startup.png"));
+        startupBackgroundLabel.setBounds(0, 0, 600, 1200); // Adjust the size and position as needed
+        layeredPane.add(startupBackgroundLabel, Integer.valueOf(5));
+
+        // Create a timer to hide the startup logo after 4 seconds
+        Timer timer = new Timer(4000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startupBackgroundLabel.setVisible(false);
+            }
+        });
+
+        // Start the timer (it will fire once after 3 seconds)
+        timer.setRepeats(false);
+        timer.start();
 
         Menu menuObj = new Menu(scrollPane);
         menuObj.setUpUI(layeredPane); //Displaying the Menu UI
