@@ -9,11 +9,11 @@ import java.io.IOException;
 
 public class Init {
     public void createBackgroundImage(JLayeredPane layeredPane, String path, int layer){ //Creates a background image
-        ImageIcon backgroundImage = new ImageIcon(path);
-        JLabel backgroundLabel = new JLabel(backgroundImage);
-        backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
+            ImageIcon backgroundImage = new ImageIcon(path);
+            JLabel backgroundLabel = new JLabel(backgroundImage);
+            backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
 
-        layeredPane.add(backgroundLabel, Integer.valueOf(layer));
+            layeredPane.add(backgroundLabel, Integer.valueOf(layer));
     }
     public void fontSetterMont(int size, JLabel textLabel){
         //Sets the font for MontSerrat
@@ -39,6 +39,7 @@ public class Init {
 
 
     public void buttonSetup(JButton button, int x, int y, int width, int height){
+        //Method for setting up a button
         button.setBorder(BorderFactory.createEmptyBorder());
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
@@ -46,12 +47,18 @@ public class Init {
     }
 
     public ImageIcon imageScaler(String path, int width, int height){
-        ImageIcon imageIcon = new ImageIcon(path);
-        Image image = imageIcon.getImage();
-        Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-        ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+            //Method for scaling the image to the desired size
+            ImageIcon imageIcon = new ImageIcon(path);
+        if (imageIcon == null || imageIcon.getIconWidth() == -1 || imageIcon.getIconHeight() == -1) {
+            System.out.println("Could not load image from " + path); //Error handler for not loading images
+            return null;
+        }
 
-        return scaledImageIcon;
+        Image image = imageIcon.getImage();
+            Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            ImageIcon scaledImageIcon = new ImageIcon(scaledImage);
+
+            return scaledImageIcon;
     }
 
     public void mouseListener(JButton button){
@@ -71,6 +78,7 @@ public class Init {
     }
 
     public void removeMenu(JLayeredPane layeredPane, JButton adoboButton, JButton siniButton, JButton bicolexButton, JButton kalderButton, JButton gulamButton, JButton cokeButton, JLabel drinksLabel){
+        //Makes the menu disappear when called
         layeredPane.remove(adoboButton);
         layeredPane.remove(siniButton);
         layeredPane.remove(bicolexButton);
@@ -80,6 +88,7 @@ public class Init {
         layeredPane.remove(drinksLabel);
     }
     public void displayMenu(JLayeredPane layeredPane, JButton adoboButton, JButton siniButton, JButton bicolexButton, JButton kalderButton, JButton gulamButton, JButton cokeButton, JLabel drinksLabel){
+        //Displays the menu when called
         layeredPane.add(adoboButton, Integer.valueOf(2));
         layeredPane.add(siniButton, Integer.valueOf(2));
         layeredPane.add(bicolexButton, Integer.valueOf(2));
@@ -90,6 +99,7 @@ public class Init {
     }
 
     public void removeCheckout(JLayeredPane layeredPane, JLabel backgroundLabel, JButton returnButton, JLabel totalLabel, JLabel numTotalLabel, JButton confirmButton, JLabel checkoutLabel){
+        //Removes the checkout screen when called
         layeredPane.remove(backgroundLabel);
         layeredPane.remove(returnButton);
         layeredPane.remove(totalLabel);

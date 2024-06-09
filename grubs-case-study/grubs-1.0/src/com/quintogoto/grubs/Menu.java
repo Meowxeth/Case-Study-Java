@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
+import java.io.IOException;
 
 // This is the Menu where the product cards are displayed
 public class Menu{
@@ -21,8 +21,8 @@ public class Menu{
         init.createBackgroundImage(layeredPane, "Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/bg.png", 1);
 
         // Adobo Button Initializer
-        JButton adoboButton = new JButton(init.imageScaler("Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/cards/adobo.png", 217, 305));
-        init.buttonSetup(adoboButton, 60, 130, 217, 305);
+            JButton adoboButton = new JButton(init.imageScaler("Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/cards/adobo.png", 217, 305));
+            init.buttonSetup(adoboButton, 60, 130, 217, 305);
 
         // Sinigang Button
         JButton siniButton = new JButton(init.imageScaler("Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/cards/sini.png", 217, 305));

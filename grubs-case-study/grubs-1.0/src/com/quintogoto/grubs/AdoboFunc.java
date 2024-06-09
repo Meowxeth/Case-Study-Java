@@ -6,22 +6,22 @@ import java.awt.event.ActionListener;
 
 public class AdoboFunc {
     JLabel quantLabel;
-    int counter = 1;
-    int orderId = 1;
+    int counter = 1; //Sets the initial quantity to 1
+    int orderId = 1; //Sets the orderId to 1 for Adobo
 
-    Init init = new Init();
+    Init init = new Init(); //Creates an Instance of Init class to use one or more of its reusable functions
     private final OrderRecorder orderRecorder;
 
     public AdoboFunc(OrderRecorder orderRecorder) {
         this.orderRecorder = orderRecorder;
-    }
+    } //The order recorder in each class is the same order recorder declared in the OrderRecorder class
 
     public void adoboFunc(JLayeredPane layeredPane, JButton adoboButton, JScrollPane scrollPane, JButton bicolexButton, JButton kalderButton, JButton gulamButton, JButton cokeButton, JButton siniButton, JLabel drinksLabel, JButton cancelButton, JButton checkoutButton, JLabel ordersLabel, JLabel ordersQuantLabel, JLabel grubsLabel) {
-        adoboButton.addActionListener(new ActionListener() {
+        adoboButton.addActionListener(new ActionListener() { //If the adobo card gets clicked then the block inside this action listener will happen
             @Override
             public void actionPerformed(ActionEvent e) {
-                OrdersCounter ordC = new OrdersCounter(orderRecorder);
-                ordC.undisplayOrders(layeredPane, cancelButton, checkoutButton, ordersLabel, ordersQuantLabel);
+                OrdersCounter ordC = new OrdersCounter(orderRecorder); //Creating an instance of the order counter
+                ordC.undisplayOrders(layeredPane, cancelButton, checkoutButton, ordersLabel, ordersQuantLabel); //Makes the order counter disappear temporarily
 
                 init.removeMenu(layeredPane, adoboButton, siniButton, bicolexButton, kalderButton, gulamButton, cokeButton, drinksLabel);
 
@@ -61,13 +61,14 @@ public class AdoboFunc {
                 //Sets the font of the quantity label
                 init.fontSetterMont(30, quantLabel);
 
+                //Adds the quantity screen to the screen
                 layeredPane.add(returnButton, Integer.valueOf(4));
                 layeredPane.add(confirmButton, Integer.valueOf(4));
                 layeredPane.add(quantLabel, Integer.valueOf(4));
                 layeredPane.add(addButton, Integer.valueOf(4));
                 layeredPane.add(minusButton, Integer.valueOf(4));
 
-                SwingUtilities.invokeLater(new Runnable() {
+                SwingUtilities.invokeLater(new Runnable() { //Always start at the top of the screen
                     public void run() {
                         scrollPane.getVerticalScrollBar().setValue(0);
                     }
@@ -87,6 +88,7 @@ public class AdoboFunc {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                //Removes the quantity screen
                 layeredPane.remove(returnButton);
                 layeredPane.remove(confirmButton);
                 layeredPane.remove(addButton);
@@ -94,6 +96,7 @@ public class AdoboFunc {
                 layeredPane.remove(backgroundLabel);
                 layeredPane.remove(minusButton);
 
+                //Display back the menu
                 layeredPane.add(adoboButton);
                 layeredPane.add(siniButton);
                 layeredPane.add(bicolexButton);
@@ -102,9 +105,9 @@ public class AdoboFunc {
                 layeredPane.add(cokeButton);
                 layeredPane.add(drinksLabel);
 
-                counter = 1;
+                counter = 1; //Resets the quantity back to 1
 
-                if(!(orderRecorder.getOrders().isEmpty())){
+                if(!(orderRecorder.getOrders().isEmpty())){ //If the orderRecorder arraylist is not empty then display the order counter, checkout, and cancel
                     OrdersCounter orderC = new OrdersCounter(orderRecorder);
                     orderC.displayOrders(layeredPane, cancelButton, checkoutButton, ordersLabel, ordersQuantLabel);
 
@@ -124,6 +127,7 @@ public class AdoboFunc {
                 orderRecorder.addQuant(getCount());
                 orderRecorder.addOrder(layeredPane, orderId);
 
+                //Removes the quantity screen
                 layeredPane.remove(returnButton);
                 layeredPane.remove(confirmButton);
                 layeredPane.remove(addButton);
@@ -132,6 +136,7 @@ public class AdoboFunc {
                 layeredPane.remove(minusButton);
                 layeredPane.remove(returnButton);
 
+                //Displays back the menu
                 layeredPane.add(adoboButton);
                 layeredPane.add(siniButton);
                 layeredPane.add(bicolexButton);
@@ -142,7 +147,7 @@ public class AdoboFunc {
 
                 counter = 1;
 
-                if(!(orderRecorder.getOrders().isEmpty())){
+                if(!(orderRecorder.getOrders().isEmpty())){ //If the orderRecorder arraylist is not empty then display the order counter, checkout, and cancel
                     OrdersCounter orderC = new OrdersCounter(orderRecorder);
                     orderC.displayOrders(layeredPane, cancelButton, checkoutButton, ordersLabel, ordersQuantLabel);
 
@@ -153,14 +158,14 @@ public class AdoboFunc {
             }
         });
 
-        init.mouseListener(confirmButton);
+        init.mouseListener(confirmButton); //Makes the cursor a hand on hover at confirm button
     }
 
-    public void addQuant(JLayeredPane layeredPane, JButton addButton){
+    public void addQuant(JLayeredPane layeredPane, JButton addButton){ //Handles the functionality of the add button at checkout screen
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(counter == 10){
+                if(counter == 10){ //If the quantity is equals to 10 then show the warning pop-up
                     // Calculate the position to center the dialog in the 600x800 area
                     int dialogWidth = 300;  // Approximate width of the dialog
                     int dialogHeight = 200; // Approximate height of the dialog
@@ -181,42 +186,42 @@ public class AdoboFunc {
                     dialog.setVisible(true);
                 }
                 else{
-                    counter++;
+                    counter++; //If the quantity is not equal to 10 then increment by 1
 
-                    quantLabel.setText(Integer.toString(counter));
+                    quantLabel.setText(Integer.toString(counter)); //Sets the label to new incremented value of the counter
                     layeredPane.revalidate();
                     layeredPane.repaint();
                 }
             }
         });
 
-        init.mouseListener(addButton);
+        init.mouseListener(addButton); //Makes the cursor a hand on hover at add button
 
 
     }
 
-    public void minusQuant(JLayeredPane layeredPane, JButton minusButton){
+    public void minusQuant(JLayeredPane layeredPane, JButton minusButton){ //Handles the functionality of the minus button at checkout screen
         Init init = new Init();
         minusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(counter == 1){
-                    System.out.println();
+                    System.out.println("Counter is equals to 1, Can't be negative");
                 }
                 else{
-                    counter--;
-                    quantLabel.setText(Integer.toString(counter));
+                    counter--; //Decrements the counter to 1 if the counter is not equal to 1
+                    quantLabel.setText(Integer.toString(counter)); //Sets the label to new decremented value of counter
                     layeredPane.revalidate();
                     layeredPane.repaint();
                 }
             }
         });
 
-        init.mouseListener(minusButton);
+        init.mouseListener(minusButton); //Makes the cursor a hand cursor on hover at minus button
 
     }
 
     public int getCount(){
         return counter;
-    }
+    } //Returns the final quantity of counter value
 }

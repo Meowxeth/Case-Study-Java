@@ -3,16 +3,18 @@ package com.quintogoto.grubs;
 import javax.swing.*; //Importing all the swing tools and classes
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowAdapter;
 
 public class Main extends JFrame {
     protected JLayeredPane layeredPane; //Created a variable to be set as content pane, this is the variable that we would add contents to
 
     public Main() {
-        JFrame frame = new JFrame("GRUBS"); //Sets the title of the window
+        super("GRUBS"); //Sets the title of the window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //If the user clicked close then the application will close
 
-        frame.setSize(600, 800); //Sets the initial size of the window to 600 by 800
-        frame.setResizable(false); // Making the JFrame not resizable to avoid GUI conflicts
+        setSize(600, 800); //Sets the initial size of the window to 600 by 800
+        setResizable(false); // Making the JFrame not resizable to avoid GUI conflicts
 
         layeredPane = new JLayeredPane(); // Creating a JLayeredPane to manage layers of components
         layeredPane.setPreferredSize(new java.awt.Dimension(600, 1200)); // Setting the scrollable size of the window, starts with 600 by 800 but when scrolled in extends to 600 by 1200
@@ -25,7 +27,7 @@ public class Main extends JFrame {
 
         scrollPane.getVerticalScrollBar().setUnitIncrement(10);
 
-        frame.setContentPane(scrollPane); // Sets the content pane to the scrollPane above
+        setContentPane(scrollPane); // Sets the content pane to the scrollPane above
 
         // Create a label to display the image of startup logo
         JLabel startupBackgroundLabel = new JLabel(new ImageIcon("Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/grubs-startup.png"));
@@ -46,7 +48,7 @@ public class Main extends JFrame {
 
         Menu menuObj = new Menu(scrollPane);
         menuObj.setUpUI(layeredPane); //Displaying the Menu UI
-        frame.setVisible(true);
+        setVisible(true);
 
         requestFocusInWindow();//Requests that this Component get the input focus
     }
