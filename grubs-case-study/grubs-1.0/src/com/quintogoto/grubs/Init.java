@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Init {
-    public void createBackgroundImage(JLayeredPane layeredPane, String path, int layer){
+    public void createBackgroundImage(JLayeredPane layeredPane, String path, int layer){ //Creates a background image
         ImageIcon backgroundImage = new ImageIcon(path);
         JLabel backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setBounds(0, 0, backgroundImage.getIconWidth(), backgroundImage.getIconHeight());
@@ -16,7 +16,7 @@ public class Init {
         layeredPane.add(backgroundLabel, Integer.valueOf(layer));
     }
     public void fontSetterMont(int size, JLabel textLabel){
-        //Sets the font
+        //Sets the font for MontSerrat
         try{
             Font fontType = Font.createFont(Font.TRUETYPE_FONT, new File("Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/fonts/Montserrat-Bold.ttf"));
             fontType = fontType.deriveFont(Font.BOLD, size);
@@ -26,8 +26,8 @@ public class Init {
         }
     }
 
-    public void fontSetterPublicSans(int size, JLabel textLabel){
-        //Sets the font
+    public void fontSetterRoboto(int size, JLabel textLabel){
+        //Sets the font for PublicSans/Roboto
         try{
             Font fontType = Font.createFont(Font.TRUETYPE_FONT, new File("Case-Study-Java/grubs-case-study/grubs-1.0/resources/assets/fonts/Roboto-Regular.ttf"));
             fontType = fontType.deriveFont(Font.PLAIN, size);

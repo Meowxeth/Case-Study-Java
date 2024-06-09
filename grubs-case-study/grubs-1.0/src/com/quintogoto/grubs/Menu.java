@@ -154,7 +154,7 @@ class OrderRecorder {
 
     public ArrayList<Integer> getOrders(){ //A getter method to get the orders ArrayList
         return orders;
-    }
+    } //Method to get the orders arraylist
 }
 
 class OrdersCounter {
@@ -296,7 +296,7 @@ class CheckoutFunc{
 //                    if(i <= 8){ //Maximum of 8 orders to be displayed on the screen
                     JLabel orderNameLabel = new JLabel(arrayList[i]); //Sets the name
                     orderNameLabel.setBounds(27, yOffset + 7, 500, 60); //Sets the positioning
-                    init.fontSetterPublicSans(30, orderNameLabel); //Sets the font
+                    init.fontSetterRoboto(30, orderNameLabel); //Sets the font
                     layeredPane.add(orderNameLabel, Integer.valueOf(4)); //Add it to the layer
                     dynamicLabels.add(orderNameLabel); // Add to the list of dynamiclabels displayed
 
@@ -304,7 +304,7 @@ class CheckoutFunc{
 
                     cF.sum += (priceArrayList[i] * orderRecorder.quant.get(i)); //Sums up all the final prices to calculate the total
                     priceLabel.setBounds(460, yOffset + 7, 250, 60); //Sets the positioning of the prices
-                    init.fontSetterPublicSans(30, priceLabel);
+                    init.fontSetterRoboto(30, priceLabel);
                     layeredPane.add(priceLabel, Integer.valueOf(4));
                     dynamicLabels.add(priceLabel); // Add to list
 
@@ -318,7 +318,7 @@ class CheckoutFunc{
                         if (orderRecorder.quant.get(i) != null) {
                             JLabel quantityLabel = new JLabel("x" + orderRecorder.quant.get(i));
                             quantityLabel.setBounds(353, 132 + (i * 65), 250, 60); // Dynamically set the Y position based on index
-                            init.fontSetterPublicSans(30, quantityLabel);
+                            init.fontSetterRoboto(30, quantityLabel);
                             layeredPane.add(quantityLabel, Integer.valueOf(4)); // Adding the label to the layered pane
                             dynamicLabels.add(quantityLabel); // Add to list
 //                        }

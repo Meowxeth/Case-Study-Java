@@ -23,6 +23,8 @@ public class Main extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); //Making the Horizontal Bar Disappear
 
+        scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+
         frame.setContentPane(scrollPane); // Sets the content pane to the scrollPane above
 
         // Create a label to display the image of startup logo
